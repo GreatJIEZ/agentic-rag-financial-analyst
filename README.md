@@ -16,7 +16,7 @@
 - **开发语言**：Python
 
 ## 效果展示
-<img src="https://raw.githubusercontent.com/GreatJIEZ/agentic-rag-financial-analyst/main/demo1.jpg" width="80%">
+<img src="https://raw.githubusercontent.com/GreatJIEZ/agentic-rag-financial-analyst/main/demo1.jpg" width="500">
 ## 🚀 快速开始
 
 ### 1. 环境准备
