@@ -105,7 +105,7 @@ def clean_old_chroma_dirs(parent_dir: str, max_keep: int = 5) -> None:
 # ===================== 财务RAG核心类 =====================
 class FinanceRAG:
     """
-    财务PDF问答RAG类（低显存适配，Qwen2 + BGE-small-zh）
+    财务PDF问答RAG类（低显存适配，Qwen2 + bge-small-zh-v1.5:latest）
     核心特性：
     1. 混合检索（向量检索为主 + 关键词检索为辅）
     2. 严格只回答问题，不扩展、不多答
