@@ -1,0 +1,4 @@
+FROM qwen2:7b
+PARAMETER quantize q4_0  # 开启4-bit量化（显存~2.8G，适配4G显卡）
+PARAMETER num_ctx 2048    # 上下文窗口
+PARAMETER temperature 0.2

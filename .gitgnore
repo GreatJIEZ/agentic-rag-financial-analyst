@@ -1,0 +1,23 @@
+# 过滤conda环境文件（这些不用上传）
+Lib/
+Scripts/
+Include/
+conda-meta/
+pkgs/
+.condarc
+
+# PyCharm缓存
+.idea/
+
+# Python缓存文件
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 子仓库
+dify/
+
+# 系统无用文件
+.DS_Store
+Thumbs.db
