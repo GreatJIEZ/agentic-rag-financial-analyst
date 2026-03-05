@@ -24,7 +24,7 @@ cd agentic-rag-financial-analyst
 
 # 安装依赖
 pip install -r requirements.txt
-### 2. 启动服务
+
 # 拉取并运行量化模型（可自由选择不同模型）
 ollama run qwen2:latest
 
