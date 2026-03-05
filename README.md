@@ -34,3 +34,6 @@ python api_fastapi.py
 
 # 启动 Gradio 前端
 python app_gradio.py
+
+## 效果展示
+![财报分析助手手机界面](demo1.jpg)
