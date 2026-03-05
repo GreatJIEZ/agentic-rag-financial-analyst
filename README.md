@@ -36,4 +36,4 @@ python api_fastapi.py
 python app_gradio.py
 
 ## 效果展示
-![财报分析助手手机界面](./demo1.jpg)
+![财报分析助手手机界面](https://raw.githubusercontent.com/GreatJIEZ/agentic-rag-financial-analyst/main/demo1.jpg)
