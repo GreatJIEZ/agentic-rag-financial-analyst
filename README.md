@@ -11,7 +11,7 @@
 ## 🛠️ 技术栈
 - **大模型部署**：Ollama (Qwen3.5:4B/2B, Qwen2:7B)
 - **框架与工具**：LangChain, Chroma, BM25, RAG Fusion
-- **服务与部署**：FastAPI, Gradio, 内网穿透
+- **服务与部署**：FastAPI, Gradio, cpolar内网穿透
 - **开发语言**：Python
 
 ## 🚀 快速开始
