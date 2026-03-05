@@ -16,12 +16,12 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_community.retrievers import BM25Retriever
 from langchain_core.documents import Document
 
-# ===================== 全局配置（适配多页长财报） =====================
+# ===================== 全局配置 =====================
 CONFIG = {
     "llm_model": "qwen2",
     "embed_model": "quentinz/bge-small-zh-v1.5:latest",
     "ollama_base_url": "http://localhost:11434",
-    "chunk_size": 400,  # 大幅缩减分块（适配长财报）
+    "chunk_size": 400,  # 大幅缩减分块
     "chunk_overlap": 30,  # 最小化重叠（减少冗余）
     "retrieve_k": 2,  # 向量检索只取1条（最相关的）
     "keyword_k": 2,  # 关键词检索只取1条（补充）
@@ -31,7 +31,7 @@ CONFIG = {
     "max_total_context_length": 1500,  # 总上下文严格控在1200字符内
 }
 
-# 财务关键词扩展（增加更多变体，提升过滤精准度）
+# 财务关键词扩展
 FINANCE_KEYS = {
     "净利润": ["归母净利润", "归属于母公司净利润", "净利", "纯利润", "税后利润"],
     "营业收入": ["營收", "营业总收入", "营收", "销售收入", "经营收入"],
@@ -45,7 +45,7 @@ FINANCE_KEYS = {
 cc = OpenCC("t2s")
 
 
-# ===================== 工具函数（多页财报专属优化） =====================
+# ===================== 工具函数 =====================
 def clean_text(text: str) -> str:
     if not isinstance(text, str):
         return ""
@@ -95,7 +95,7 @@ def smart_truncate(text: str, max_len: int, keyword: str = "") -> str:
         if key_sentences:
             text = "。".join(key_sentences)[:max_len - 50]  # 留50字符给数字
 
-    # 步骤2：提取数字和核心财务术语（保证关键数据不丢）
+    # 步骤2：提取数字和核心财务术语
     finance_terms = "|".join([k for v in FINANCE_KEYS.values() for k in v] + list(FINANCE_KEYS.keys()))
     key_info = re.findall(rf'({finance_terms}|\d+[\.,]?\d*%?|\d+万|\d+亿)', text)
     key_str = " 【关键数据】：" + " ".join(list(set(key_info)))[:100]  # 去重+控长
@@ -121,7 +121,7 @@ def filter_by_keyword(text: str, keywords: List[str]) -> str:
         if any(kw in line for kw in keywords):
             filtered_lines.append(line.strip())
 
-    # 如果过滤后无内容，返回前200字符（兜底）
+    # 如果过滤后无内容，返回前200字符
     if not filtered_lines:
         return text[:200]
 
@@ -135,7 +135,7 @@ def load_pdf_with_pdfplumber(pdf_path: str) -> List[Document]:
             for page_num, page in enumerate(pdf.pages, 1):
                 page_text = page.extract_text() or ""
                 if page_text.strip():
-                    # 加载时就初步过滤（只保留有财务术语的页）
+                    # 加载时就初步过滤
                     finance_terms = "|".join([k for v in FINANCE_KEYS.values() for k in v] + list(FINANCE_KEYS.keys()))
                     if re.search(finance_terms, page_text):
                         documents.append(Document(
@@ -165,15 +165,15 @@ def clean_old_chroma_dirs(parent_dir: str, max_keep: int = 5):
             pass
 
 
-# ===================== FinanceRAG 主体（多页财报专属） =====================
+# ===================== FinanceRAG =====================
 class FinanceRAG:
     def __init__(self):
-        # 强制限制LLM上下文窗口（适配Qwen2）
+        # 限制LLM上下文窗口，防止超出上下文
         self.llm = OllamaLLM(
             model=CONFIG["llm_model"],
             base_url=CONFIG["ollama_base_url"],
             temperature=0.1,
-            num_ctx=2048,  # Qwen2-7B的上下文上限
+            num_ctx=2048,  
             max_tokens=512  # 限制生成回答长度，留更多空间给输入
         )
         self.embeddings = OllamaEmbeddings(
@@ -268,7 +268,7 @@ class FinanceRAG:
         if not self.db:
             raise Exception("请先执行build_db加载PDF")
 
-        # 1. 提取问题关键词（核心：只聚焦当前问题）
+        # 1. 提取问题关键词（只聚焦当前问题）
         target_key = None
         filter_keywords = []
         for k, aliases in FINANCE_KEYS.items():
@@ -346,10 +346,10 @@ class FinanceRAG:
         return f"{answer}\n上下文数据来源：第{','.join(pages)}页"
 
 
-# ===================== 测试（多页财报专用） =====================
+# ===================== 测试 =====================
 if __name__ == "__main__":
     rag = FinanceRAG()
-    # 替换为你的多页财报PDF路径
+    # 可以替换为你的多页财报PDF路径
     pdf_file_path = r"E:\conda\envs\llm_1_9\乐华年报.pdf"
 
     try:
