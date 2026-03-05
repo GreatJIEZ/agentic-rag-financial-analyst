@@ -55,7 +55,7 @@ def clean_text(text: str) -> str:
     # 清理多余空格/换行
     text = re.sub(r'\s+', ' ', text).strip()
 
-    # 核心替换：全自动繁简转换（删除手动映射表，改用专业库）
+    # 核心替换：全自动繁简转换
     try:
         text = cc.convert(text)  # 一键完成所有繁体→简体转换
     except Exception as e:
@@ -66,7 +66,7 @@ def clean_text(text: str) -> str:
 
 def clean_old_chroma_dirs(parent_dir: str, max_keep: int = 5) -> None:
     """
-    清理父目录下的旧向量库目录（可选功能）
+    清理父目录下的旧向量库目录
     :param parent_dir: 向量库父目录
     :param max_keep: 保留最新的N个目录，其余删除
     """
@@ -290,7 +290,7 @@ if __name__ == "__main__":
     # 初始化RAG实例
     rag = FinanceRAG()
 
-    # 构建向量库（替换为你的PDF路径）
+    # 构建向量库
     pdf_file_path = r"E:\conda\envs\llm_1_9\乐华年报.pdf"
     try:
         rag.build_db(pdf_file_path)
