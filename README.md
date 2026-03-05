@@ -15,6 +15,8 @@
 - **服务与部署**：FastAPI, Gradio, cpolar内网穿透
 - **开发语言**：Python
 
+## 效果展示
+![财报分析助手手机界面](https://raw.githubusercontent.com/GreatJIEZ/agentic-rag-financial-analyst/main/demo1.jpg)
 ## 🚀 快速开始
 
 ### 1. 环境准备
@@ -35,5 +37,3 @@ python api_fastapi.py
 # 启动 Gradio 前端
 python app_gradio.py
 
-## 效果展示
-![财报分析助手手机界面](https://raw.githubusercontent.com/GreatJIEZ/agentic-rag-financial-analyst/main/demo1.jpg)
