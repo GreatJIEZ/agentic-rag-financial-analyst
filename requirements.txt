@@ -166,3 +166,4 @@ win_inet_pton @ file:///C:/miniconda3/conda-bld/win_inet_pton_1761746274727/work
 yarl==1.22.0
 zipp==3.23.0
 zstandard==0.25.0
+langgraph==0.2.39
