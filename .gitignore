@@ -1,5 +1,5 @@
-# 直接创建带点的.gitignore，过滤1/（你的conda环境目录）
-echo "# 过滤conda环境目录（关键！）
+# 创建.gitignore，过滤1/（你的conda环境目录）
+echo "# 过滤conda环境目录
 1/
 # PyCharm缓存
 .idea/
