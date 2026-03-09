@@ -1,4 +1,4 @@
-# 过滤conda环境文件（这些不用上传）
+# 过滤conda环境文件
 Lib/
 Scripts/
 Include/
