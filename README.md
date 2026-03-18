@@ -1,4 +1,4 @@
-# 基于 Ollama+LangGraph 的多轮记忆财报分析智能问答系统
+# 基于 VLLM/Ollama+LangGraph 的多轮记忆财报分析智能问答系统
 > 面向有限算力场景的 Agentic RAG 财报分析助手，基于 Ollama + LangGraph 构建多智能体协作架构，支持 4GB 显存下高效运行 Qwen7B/4B/2B 量化大模型，新增多轮对话上下文记忆能力，实现财报解析-数据提取-指标计算-专业分析的全流程闭环。
 
 ## ✨ 核心亮点
